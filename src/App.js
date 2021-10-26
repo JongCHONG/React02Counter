@@ -7,28 +7,47 @@ class App extends React.Component {
     super()
 
     this.state = {
-      count: 0
+      count1: 0,
+      count2: 0
     }
 
   }
 
-  handlePlusClick = () => {
-    if (this.state.count < 100)
-    this.setState({count: this.state.count + 1})
+  handlePlusClick1 = () => {
+    if (this.state.count1 < 100) {
+      this.setState({count1: this.state.count1 + 1})
+      if (this.state.count1 === this.state.count2) {
+        this.setState({count2: this.state.count2 + 1})
+      }
+    }
   }
-  handleMinusClick = () => {
-    if (this.state.count > 0) {
-      this.setState({count: this.state.count - 1})
+  handleMinusClick1 = () => {
+    if (this.state.count1 > 0) {
+      this.setState({count1: this.state.count1 - 1})
+    }
+  }
+  handlePlusClick2 = () => {
+    if (this.state.count2 < 100) {
+      this.setState({count2: this.state.count2 + 1})
+    }
+  }
+  handleMinusClick2 = () => {
+    if (this.state.count2 > 0) {
+      this.setState({count2: this.state.count2 - 1})
+      if (this.state.count1 === this.state.count2) {
+        this.setState({count1: this.state.count1 - 1})
+      }
     }
   }
 
   render() {
-    // console.log(this.state.count)
+    // console.log(this.state.count1)
 
     return (
       <>
         <h1>Counter</h1>
-        <Counter count={this.state.count} increment={this.handlePlusClick} substract={this.handleMinusClick}/>
+        <Counter count1={this.state.count1} increment={this.handlePlusClick1} substract={this.handleMinusClick1}/>
+        <Counter count2={this.state.count2} increment={this.handlePlusClick2} substract={this.handleMinusClick2}/>
       </>
     )
   }
